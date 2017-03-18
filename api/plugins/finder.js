@@ -6,6 +6,7 @@ const path = require('path');
 const crypto = require('crypto');
 const Promise = require('bluebird');
 const zerorpc = require('zerorpc');
+const _ = require('lodash');
 
 const validUrl = require('valid-url');
 const readChunk = require('read-chunk');
@@ -128,7 +129,7 @@ class FinderPlugin {
           return resolve('Unknown');
         }
 
-        let name = result[0];
+        let name = _.split(result[0], '-', 1)[0];
 
         client.close();
 
