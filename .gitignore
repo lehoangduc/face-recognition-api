@@ -1,6 +1,8 @@
 .idea
 .env
 node_modules
+logs/*.*
+!logs/.gitkeep
 /downloads/*.*
 /images/*.*
 !/downloads/.gitkeep
