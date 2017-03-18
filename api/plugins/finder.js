@@ -115,7 +115,15 @@ class FinderPlugin {
 
           resolve(desPath);
         }
-      })
+      });
+    });
+  }
+
+  removeFile(path) {
+    return new Promise((resolve, reject) => {
+      fs.unlink(path, (error) => {
+        resolve(path);
+      });
     });
   }
 
@@ -170,9 +178,13 @@ class FinderPlugin {
         return this.callRpc(imagePath);
       })
       .then((name) => {
-        // Remove file
-        fs.unlink(imagePath);
-
+        return this
+          .removeFile(imagePath)
+          .then(() => {
+            return name;
+          });
+      })
+      .then((name) => {
         return reply({
           data: {
             name: name
