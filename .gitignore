@@ -3,4 +3,5 @@
 node_modules
 /downloads/*.*
 /images/*.*
-logs/*.*
+!/downloads/.gitkeep
+!/images/.gitkeep
