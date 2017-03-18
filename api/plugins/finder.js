@@ -169,6 +169,9 @@ class FinderPlugin {
         return this.callRpc(imagePath);
       })
       .then((name) => {
+        // Remove file
+        fs.unlink(imagePath);
+
         return reply({
           data: {
             name: name
