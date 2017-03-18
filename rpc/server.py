@@ -15,7 +15,7 @@ def main(argv):
    try:
       opts, args = getopt.getopt(argv, 'h:p:',["host=","port="])
    except getopt.GetoptError:
-      print 'usage: server.py -h <host> -p <port>'
+      print('usage: server.py -h <host> -p <port>')
       sys.exit(2)
 
    for opt, arg in opts:
@@ -25,10 +25,10 @@ def main(argv):
          port = arg
 
    if (not host or not port):
-       print 'usage: server.py -h <host> -p <port>'
+       print('usage: server.py -h <host> -p <port>')
        sys.exit(2)
 
-   print 'Server running at {}:{}'.format(host, port)
+   print('Server running at {}:{}'.format(host, port))
 
    server = zerorpc.Server(FaceRPC())
    server.bind("tcp://" + host + ":" + port)
