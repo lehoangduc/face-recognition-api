@@ -1,3 +1,4 @@
-/downloads/*
 node_modules
-.env.example
+/downloads/*.*
+/images/*.*
+logs/*.*

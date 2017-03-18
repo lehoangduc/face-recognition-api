@@ -4,17 +4,23 @@
   "description": "Face recogition api",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
+    "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "lehoangduc",
   "license": "MIT",
   "dependencies": {
+    "app-root-path": "^2.0.1",
     "bluebird": "^3.5.0",
     "dotenv": "^4.0.0",
     "hapi": "^16.1.0",
     "image-downloader": "^2.0.3",
     "image-type": "^3.0.0",
-    "valid-url": "^1.0.9"
+    "lodash": "^4.17.4",
+    "moment": "^2.17.1",
+    "read-chunk": "^2.0.0",
+    "valid-url": "^1.0.9",
+    "winston": "^2.3.1",
+    "zerorpc": "^0.9.7"
   }
 }
