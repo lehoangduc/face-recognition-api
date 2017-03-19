@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 const Promise = require('bluebird');
-const zerorpc = require('zerorpc');
+//const zerorpc = require('zerorpc');
 const _ = require('lodash');
 
 const validUrl = require('valid-url');
@@ -70,7 +70,7 @@ class FinderPlugin {
     }
 
     // Check valid url
-    if (!validUrl.isHttpUri(imageUrl)) {
+    if (!validUrl.isHttpUri(imageUrl) || !validUrl.isHttpsUri(imageUrl)) {
       return new Error(this.errors.url_invalid);
     }
 
