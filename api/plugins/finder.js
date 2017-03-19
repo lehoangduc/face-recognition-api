@@ -126,6 +126,12 @@ class FinderPlugin {
     });
   }
 
+  /**
+   * Remove file
+   *
+   * @param path
+   * @returns {*}
+   */
   removeFile(path) {
     return new Promise((resolve, reject) => {
       fs.unlink(path, (error) => {
@@ -134,6 +140,25 @@ class FinderPlugin {
     });
   }
 
+  /**
+   * Find highest occurrence item in array
+   *
+   * @param data
+   * @returns {*}
+   */
+  mode(data) {
+    return data.sort((a,b) =>
+      data.filter(v => v===a).length
+      - data.filter(v => v===b).length
+    ).pop();
+  }
+
+  /**
+   * Call RPC
+   *
+   * @param imagePath
+   * @returns {*}
+   */
   callRpc(imagePath) {
     return new Promise((resolve, reject) => {
       let serviceProvider = this.server.plugins['ServiceProvider'];
@@ -149,8 +174,11 @@ class FinderPlugin {
 
         logger.debug('Result %s', result);
 
-        let name = result[0];
-        name = name.substring(0, name.lastIndexOf('-'));
+        result = _.flatMap(result, function(item) {
+          return [item.substring(0, item.lastIndexOf('-'))];
+        });
+
+        let name = this.mode(result);
 
         client.close();
 
