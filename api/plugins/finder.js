@@ -167,7 +167,7 @@ class FinderPlugin {
 
       client.connect('tcp://' + this.options.rpc_host + ':' + this.options.rpc_port);
 
-      client.invoke('find', imagePath, function(error, result) {
+      client.invoke('find', imagePath, (error, result) => {
         if (!result || (!result instanceof Array) || !result.length) {
           return resolve('Unknown');
         }
