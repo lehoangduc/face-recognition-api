@@ -57,7 +57,7 @@ def main(argv):
 
    print('Begin training images in {}'.format(dir))
 
-   for file in image_files_in_folder(known_people_folder):
+   for file in image_files_in_folder(dir):
        basename = os.path.splitext(os.path.basename(file))[0]
        img = face_recognition.load_image_file(file)
        encodings = face_recognition.face_encodings(img)
