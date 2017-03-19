@@ -67,7 +67,7 @@ def main(argv):
 
    print('Server running at tcp://{}:{}'.format(host, port))
 
-   server = zerorpc.Server(FaceRPC())
+   server = zerorpc.Server(FaceRPC(known_names, known_face_encodings))
    server.bind("tcp://" + host + ":" + port)
    server.run()
 
