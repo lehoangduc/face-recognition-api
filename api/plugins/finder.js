@@ -136,6 +136,8 @@ class FinderPlugin {
 
   callRpc(imagePath) {
     return new Promise((resolve, reject) => {
+      let serviceProvider = this.server.plugins['ServiceProvider'];
+      let logger = serviceProvider.get('logger');
       let client = new zerorpc.Client();
 
       client.connect('tcp://' + this.options.rpc_host + ':' + this.options.rpc_port);
@@ -145,7 +147,10 @@ class FinderPlugin {
           return resolve('Unknown');
         }
 
-        let name = _.split(result[0], '-', 1)[0];
+        logger.debug('Result %s', result);
+
+        let name = result[0];
+        name = name.substring(0, name.lastIndexOf('-'));
 
         client.close();
 
