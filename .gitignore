@@ -3,7 +3,13 @@
 node_modules
 logs/*.*
 !logs/.gitkeep
-/downloads/*.*
-/images/*.*
-!/downloads/.gitkeep
-!/images/.gitkeep
+
+/examples/downloads/*.*
+/examples/images/*.*
+
+!/examples/downloads/.gitkeep
+!/examples/images/.gitkeep
+!/examples/images/obama-1.jpg
+!/examples/images/obama-2.jpg
+!/examples/images/trump-1.jpg
+!/examples/images/trump-2.jpg

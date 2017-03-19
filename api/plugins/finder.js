@@ -15,7 +15,14 @@ const imageType = require('image-type');
 const imageDownloader = require('image-downloader');
 
 class FinderPlugin {
-  constructor (options) {
+  /**
+   * Constructor
+   *
+   * @param server
+   * @param options
+   */
+  constructor (server, options) {
+    this.server = server;
     this.validExtensions = ['jpg', 'png', 'jpeg'];
 
     this.errors = {
@@ -155,6 +162,8 @@ class FinderPlugin {
    */
   recognize(request, reply) {
     let result = this.validateRequest(request);
+    let serviceProvider = this.server.plugins['ServiceProvider'];
+    let logger = serviceProvider.get('logger');
 
     if (result instanceof Error) {
       return reply({
@@ -169,18 +178,22 @@ class FinderPlugin {
     let extension = this.getUrlExtension(imageUrl);
     let imagePath = this.options.download_path + '/' + this.generateRandomString() + '.' + extension;
 
+    logger.debug('Received URL %s', imageUrl);
+
     return this
       .downloadImage(imageUrl, imagePath)
       .then(() => {
         return this.validateImage(imagePath);
       })
       .then(() => {
+        logger.debug('Image path %s', imagePath);
         return this.callRpc(imagePath);
       })
       .then((name) => {
         return this
           .removeFile(imagePath)
           .then(() => {
+            logger.debug('Removed image %s', imagePath);
             return name;
           });
       })
@@ -192,6 +205,9 @@ class FinderPlugin {
         })
       })
       .catch(function (error) {
+        logger.debug(error.message);
+        logger.error(error.message);
+
         return reply({
           error: {
             status: '422',
@@ -203,7 +219,20 @@ class FinderPlugin {
 }
 
 exports.register = function (server, options, next) {
-  let finderPlugin = new FinderPlugin(options);
+  let finderPlugin = new FinderPlugin(server, options);
+
+  server.route({
+    method: 'GET',
+    path: '/',
+    handler: (request, reply) => {
+      reply({
+        data: {
+          name: 'Face recognition API',
+          version: '1.0.0'
+        }
+      });
+    }
+  });
 
   server.route({
     method: 'GET',

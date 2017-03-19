@@ -10,19 +10,22 @@ class Logger {
     this.client = null;
     this.logPath = options.log_path || (ROOT_PATH + '/logs');
     this.logFile = options.log_file || 'app.log';
+    this.logLevel = options.log_level || 'debug';
 
     this.init();
   }
 
   init () {
+    let logLevel = this.logLevel;
+
     this.client = new (winston.Logger)({
       transports: [
         new (winston.transports.Console)({
           timestamp: function() {
             return moment().format('YYYY-MM-DD HH:mm:ss');
           },
-          colorize:true,
-          level: 'info'
+          colorize: true,
+          level: logLevel
         }),
         new (winston.transports.File)({ filename: this.logPath + '/' + this.logFile, level: 'error', json: false })
       ]

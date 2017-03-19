@@ -1,7 +1,7 @@
 Face Recognition API
 ======
 
-> A Face Recognition API built on top of Python and NodeJs
+> An Open-source built on top of Python and NodeJs that lets you build your own Face Recognition API
 
 ## Requiments
 
@@ -21,15 +21,18 @@ $ cp .env.example .env
 $ pip3 install zerorpc
 ```
 
-## How Face Recognition Works
-User request an URL <==> NodeJs API (Download image from URL) <==> Python RPC Server (Identify the face from known images in "images" directory)
+## How It Works
+User request an URL <==> NodeJs API (Download image from URL) <==> Python RPC Server (Identify the face from known images)
 
-## Usage
+## Quick Start
+* Edit variables in .env file
+* Copy person pictures you already know to "examples/images" folder
+* Run commands
 
 ```bash
 # Start RPC server
 $ cd rpc
-$ python4 server.py -h 127.0.0.1 -p 8001
+$ python4 server.py -h 127.0.0.1 -p 8001 -d examples/images
 
 # Start NodeJs API service
 $ cd api

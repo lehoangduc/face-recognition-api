@@ -23,7 +23,11 @@ server.register([
       services: [
         {
           name: 'logger',
-          path: 'services/logger'
+          path: 'services/logger',
+          options: {
+            log_file: process.env.LOG_FILE,
+            log_level: process.env.LOG_LEVEL
+          }
         }
       ]
     }
