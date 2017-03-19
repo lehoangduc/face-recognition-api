@@ -32,7 +32,7 @@ User request an URL <==> NodeJs API (Download image from URL) <==> Python RPC Se
 ```bash
 # Start RPC server
 $ cd rpc
-$ python4 server.py -h 127.0.0.1 -p 8001 -d examples/images
+$ python3 server.py -h 127.0.0.1 -p 8001 -d examples/images
 
 # Start NodeJs API service
 $ cd api
