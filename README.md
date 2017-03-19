@@ -39,7 +39,7 @@ $ cd api
 $ npm start
 
 # Run with example URL
-$ curl http://127.0.0.1:8000/find?url=http://images.ndh.vn/Images/Uploaded/Share/2016/05/19/f51160112-obama-1101p1d16238ca868f5d9b1eb70c950d8f03fnbcnews-fp-1200-800.jpg
+$ curl http://127.0.0.1:8000/find?url=http://media.doanhnghiepvn.vn/Images/thuphuong/2016/11/18/obama.jpg
 
 ```
 
